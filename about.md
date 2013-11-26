@@ -11,8 +11,7 @@ image:
   creditlink: http://texturelovers.com
 ---
 
-Jekyll is pretty rad and figured releasing a cleaned up version of [my site](http://mademistakes.com)[^1] as a theme for others to hack and build on would be fun. So here be that theme --- I call it **Minimal Mistakes**, a responsive Jekyll theme with large featured images and solid typography. 
-
+hl416 is ...
 ## This site is built to:
 
 * Share ideas and experiences.
