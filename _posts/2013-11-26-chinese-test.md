@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 中文测试
-description: "My first blog: how to setup a blog using Jekyll"
+description: "中文测试"
 modified: 2013-11-26
 category: articles
 tags: [first, jekyll,blog, tutorial]
