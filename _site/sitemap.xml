@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://your-site.com</loc>
+        <loc>http://hl416.github.com</loc>
     </url>
     
     
     <url>
-        <loc>http://your-site.com/articles/code-highlighting-post</loc>
+        <loc>http://hl416.github.com/machine%20learning/test4</loc>
     </url>
     
     <url>
-        <loc>http://your-site.com/articles/readability-feature-post</loc>
+        <loc>http://hl416.github.com/articles/test3</loc>
     </url>
     
     <url>
-        <loc>http://your-site.com/articles/sample-post-images</loc>
+        <loc>http://hl416.github.com/test2</loc>
     </url>
     
     <url>
-        <loc>http://your-site.com/articles/readability-post</loc>
+        <loc>http://hl416.github.com/articles/test</loc>
     </url>
     
     <url>
-        <loc>http://your-site.com/articles/sample-post</loc>
+        <loc>http://hl416.github.com/articles/ml005-ex6</loc>
+    </url>
+    
+    <url>
+        <loc>http://hl416.github.com/articles/ml005-ex2</loc>
+    </url>
+    
+    <url>
+        <loc>http://hl416.github.com/articles/why-you</loc>
+    </url>
+    
+    <url>
+        <loc>http://hl416.github.com/articles/ml005-ex1</loc>
     </url>
     
 </urlset>
