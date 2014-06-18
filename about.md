@@ -11,11 +11,9 @@ image:
   creditlink: http://texturelovers.com
 ---
 
-hl416 is now a PhD student, whose research interests focus on data mining in location-based social networks.
 
 ## Hobbies
 
-* Sports: I learned to swim in the last year of my undergraduate, and learned to play Ping Pong when I was an Intern in MSRA. I love swimming! I love Ping Pong!
 
 ## Skills
 
