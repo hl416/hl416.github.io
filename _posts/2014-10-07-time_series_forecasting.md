@@ -7,6 +7,12 @@ category: articles
 tags: [life, love]
 ---
 
+$$ 
+\begin{aligned} \dot{x} &= \sigma(y-x) \\ 
+\dot{y} &= \rho x - y - xz \\ 
+\dot{z} &= -\beta z + xy \end{aligned} 
+$$
+
 In [[time series analysis]], the '''moving-average''' ('''MA''') model is a common approach for modeling [[univariate]] time series models. The notation MA(''q'') refers to the moving average model of order ''q'':
 
 :<math> X_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \cdots + \theta_q \varepsilon_{t-q} \,</math>
