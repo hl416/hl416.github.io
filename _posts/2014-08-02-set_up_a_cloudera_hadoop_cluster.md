@@ -1,4 +1,5 @@
---- layout: post
+--- 
+layout: post
 title: Set Up a Cloudera Hadoop Cluster
 description: ""
 modified: 2014-08-02
