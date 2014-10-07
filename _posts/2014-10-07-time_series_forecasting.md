@@ -12,5 +12,5 @@ In [[time series analysis]], the '''moving-average''' ('''MA''') model is a comm
 
 $$ X_t = \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \cdots + \theta_q \varepsilon_{t-q} \$$
 
-where μ is the mean of the series, the $$\theta_1$$, ..., $$theta_q$$ are the parameters of the model and the $$ε_t$$, ..., $$ε_{t-1}$$ are [[white noise]] error terms. The value of ''q'' is called the order of the MA model. 
+where μ is the mean of the series, the $$\theta_1$$, ..., $$\theta_q$$ are the parameters of the model and the $$ε_t$$, ..., $$ε_{t-1}$$ are [[white noise]] error terms. The value of ''q'' is called the order of the MA model. 
 
