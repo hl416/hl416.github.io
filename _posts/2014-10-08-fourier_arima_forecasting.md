@@ -7,6 +7,9 @@ category: articles
 tags: [life, love]
 ---
 
+
+Suppose we have an value varying with time, we want to use collected data to forecast the value in the future. In our case, the data has the seasonal characteristics, so that a seasonal ARIMA seems to be our first choice. However, the frequency of our data is 144 (we sample the data every 10 min, so 6 points an hour and 6 x 24 points every day), and arima() function can only process relatively small frequency. STE is similar. So, here we try to first use Fourier to model the seasonal pattern and use ARIMA to describe the dynamics. In fact, there is a good blog about this method:http://robjhyndman.com/hyndsight/longseasonality/.
+
 First, lets load the libraries.
 {% highlight R %}
 library(forecast)
@@ -31,7 +34,7 @@ registerDoSNOW(cl)
 {% endhighlight %}
 
 
-We use the previous data to estimate the value of the next 3 windows. More precisely, we want to estimate the value of 30 min later or we say always to be 3 steps ahead. 
+We use the previous data to estimate the value of the next 3 windows. More precisely, we want to estimate the value of 30 min later or we say always to be 3 steps ahead. If we want to forecast the variation in the next day, then it's eaiser, and we do not need to use for loop.
 {% highlight R %}
 ls<-foreach(s=1:(141+144*4),.combine=cbind,.packages='forecast') %dopar% {
         x = 11 + floor((s-1)/144)
