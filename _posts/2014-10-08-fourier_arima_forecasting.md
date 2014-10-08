@@ -7,6 +7,7 @@ category: articles
 tags: [life, love]
 ---
 
+First, lets load the libraries.
 {% highlight R %}
 library(forecast)
 library(doSNOW)
@@ -14,19 +15,24 @@ library(foreach)
 library(doParallel)
 {% endhighlight %}
 
+
+Then, read data from file and set the frequency.
 {% highlight R %}
 data <- scan(__FILE__)
 dataseries <- ts(data,frequency=144)
 datatest <- window(dataseries,start=c(11,1))
 {% endhighlight %}
 
-{% highlight R %}
 
+We need to do parallel processing otherwise it would be very slow given the scale of my dataset.
+{% highlight R %}
 cl<-makeCluster(40,type="SOCK")
 registerDoSNOW(cl)
 {% endhighlight %}
-{% highlight R %}
 
+
+We use the previous data to estimate the value of the next 3 windows. More precisely, we want to estimate the value of 30 min later or we say always to be 3 steps ahead. 
+{% highlight R %}
 ls<-foreach(s=1:(141+144*4),.combine=cbind,.packages='forecast') %dopar% {
         x = 11 + floor((s-1)/144)
         y = (s-1) %% 144 + 1
@@ -47,22 +53,17 @@ ls<-foreach(s=1:(141+144*4),.combine=cbind,.packages='forecast') %dopar% {
         max(0,fc$mean[3]) # get the estimated value 30 min later (10*3)
 }
 {% endhighlight %}
+
+Finally, we visualize the forecasting and stop the parallel processing.
 {% highlight R %}
-
-
  png(imgFilePath, width  = 3.25,
   height    = 2.25,
   units     = "in",
   res       = 1200,
   pointsize = 4)
-
 plot(ls[1,],type="l",lty=1,col="red",xlab="Time (Unit: 10min)",ylab="Wait Time in Total (sec)")
 lines(datatest[4:(144*5)],col="green")
 legend("topright",c("Predicted","Actual"),col=c("red","green"),lty=1)
-{% endhighlight %}
-{% highlight R %}
-
-
 stopCluster(cl)
 dev.off()
 
