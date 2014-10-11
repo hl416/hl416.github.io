@@ -32,9 +32,9 @@ Also, according to the above images, for MA(1), if we calcuate its ACF, then onl
 Auto Regression:
 
 AR(1) is a weekly stationary process, and the corresponding ACF is becoming smaller and smaller with the increase of time difference: ACF(1) > ACF(2) > ...> . And the lim is 0 when the time difference becomes extremely large.  Therefore, just like the case in moving average,  we can also look at the characteristics of ACF to say whether to use AR to analyze the data. But ACF would be difficult to decide whether to use AR(1) or AR(2) or AR(i). Then people propose PACF: partial auto-correlation function. In this case, in the AR(1) case, only PACF(1) > 0, and PACF(j) == 0 for j > 1. 
-![My helpful screenshot]({{ site.url }}/images/autoregressive_1)
-![My helpful screenshot]({{ site.url }}/images/autoregressive_2)
-![My helpful screenshot]({{ site.url }}/images/autoregressive_3)
+![My helpful screenshot]({{ site.url }}/images/autoregressive_1.png)
+![My helpful screenshot]({{ site.url }}/images/autoregressive_2.png)
+![My helpful screenshot]({{ site.url }}/images/autoregressive_3.png)
 
 
 
