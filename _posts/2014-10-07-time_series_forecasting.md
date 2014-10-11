@@ -17,6 +17,12 @@ where μ is the mean of the series, the $$\theta_1$$, ..., $$\theta_q$$ are the 
 
 The following image shows the case of MA(1) and corresponding ACF. We can see that in the ACF, only $$r_{1}$$ is larger than 0. The ACF for MA(2) will similarly have $$r_{1}$$ and $$r_{2}$$ larger than 0.
 
+![My helpful screenshot]({{ site.url }}/images/moving_average_1.jpg)
+![My helpful screenshot]({{ site.url }}/images/moving_average_2.jpg)
+![My helpful screenshot]({{ site.url }}/images/moving_average_3.jpg)
+![My helpful screenshot]({{ site.url }}/images/moving_average_4.jpg)
+
+
 
 Auto Regression:
 
