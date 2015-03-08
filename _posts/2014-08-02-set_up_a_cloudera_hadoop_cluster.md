@@ -98,28 +98,28 @@ remember to stop iptables, a lot of problems relate to it. "Quorum membership st
 if a server is in safe mode, then it cannot write to any directory. so leave safe mode, if you see some errors like "cannot create dir /tmp/..", namenode is safe mode
 
 
-[hdfs@crdc-c240-15 haolliu]$ hdfs dfs -ls "/"
+$ hdfs dfs -ls "/"
 Found 4 items
 drwxr-xr-x   - hbase hbase               0 2014-08-05 14:31 /hbase
 drwxrwxr-x   - solr  solr                0 2014-08-03 03:10 /solr
 drwxrwxrwt   - hdfs  supergroup          0 2014-08-03 15:50 /tmp
 drwxr-xr-x   - hdfs  supergroup          0 2014-08-06 17:12 /user
-[hdfs@crdc-c240-15 haolliu]$ hdfs dfs -chmod 777 "/user"
-[hdfs@crdc-c240-15 haolliu]$ hdfs dfs -ls "/"
+$ hdfs dfs -chmod 777 "/user"
+$ hdfs dfs -ls "/"
 Found 4 items
 drwxr-xr-x   - hbase hbase               0 2014-08-05 14:31 /hbase
 drwxrwxr-x   - solr  solr                0 2014-08-03 03:10 /solr
 drwxrwxrwt   - hdfs  supergroup          0 2014-08-03 15:50 /tmp
 drwxrwxrwx   - hdfs  supergroup          0 2014-08-06 17:12 /user
 
-[hdfs@crdc-c240-15 haolliu]$ hdfs dfs -ls "/"
+$ hdfs dfs -ls "/"
 Found 4 items
 drwxr-xr-x   - hbase hbase               0 2014-08-05 14:31 /hbase
 drwxrwxr-x   - solr  solr                0 2014-08-03 03:10 /solr
 drwxrwxrwt   - hdfs  supergroup          0 2014-08-03 15:50 /tmp
 drwxr-xr-x   - hdfs  supergroup          0 2014-08-06 17:12 /user
-[hdfs@crdc-c240-15 haolliu]$ hdfs dfs -chmod 777 "/user"
-[hdfs@crdc-c240-15 haolliu]$ hdfs dfs -ls "/"
+$ hdfs dfs -chmod 777 "/user"
+$ hdfs dfs -ls "/"
 Found 4 items
 drwxr-xr-x   - hbase hbase               0 2014-08-05 14:31 /hbase
 drwxrwxr-x   - solr  solr                0 2014-08-03 03:10 /solr
@@ -137,9 +137,19 @@ org.apache.zookeeper.KeeperException$NoNodeException: KeeperErrorCode = NoNode f
 
 I then found the cause is:
 
-INFO org.apache.hadoop.hbase.regionserver.HRegionServer: STOPPED: Unhandled: org.apache.hadoop.hbase.ClockOutOfSyncException: Server crdc-c240-10,60020,1407891253501 has been rejected; Reported time is too far out of sync with master.  Time difference of 53040ms > max allowed of 30000ms
+INFO org.apache.hadoop.hbase.regionserver.HRegionServer: STOPPED: Unhandled: org.apache.hadoop.hbase.ClockOutOfSyncException: Server c240-10,60020,1407891253501 has been rejected; Reported time is too far out of sync with master.  Time difference of 53040ms > max allowed of 30000ms
 
 One solution is to set the ntp server for these servers, but our servers cannot connect to Internet. I then directly set the time of my two servers by using the "date" command in shell.
 
 Today, i noted that when one instance of a service cannot successfully start. Then instead of only checking the stderr.log in the web GUI, i can also check the role log in the same page. In particular, i can check the same role path in the actual machine, then i can find more useful info.
 
+
+When using sqoop to import data, sometimes the data types in the databases are not supported in hive, e.g., macaddr. In this case, if you import the table directly, then you would encounter the error that "No Java type for SQL type 1111 for column". Using query with type casting would fix this problem.
+
+sqoop import --connect jdbc:postgresql://10.79.57.70/cqdb --query 'select ts,mac::text,x,y,shop,floor from wanda.pos WHERE $CONDITIONS' --split-by ts --target-dir /user/cloudera/wanda --fields-terminated-by '\t' --hive-import  --username primea --password primea --hive-table mse_wanda -- --schema wanda
+
+Always keep in mind to make everything look fine: every service with a good status and all the configs be deployed to clients. A unconsistent status would lead to a lot of unexpected situations/problems.
+
+One day, when i run pig or yarn, the job hangs and no log/info is output. I spend a long time to try to fix but failed. Finally i reinstalled yarn and everything went fine (In the Host Tab, remove all instances and then add instances).
+
+Increasing the memory for containers and map/reduce task inceases the performance significantly when i run the pig script with a lot of data. These two can be configured by seaching 'container mem' and 'java opts' respectively in the web interface of cloudera yarn configurations.
